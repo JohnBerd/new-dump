@@ -3,7 +3,21 @@ is_installed() {
 }
 
 #installs
-apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice
+apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice arduino arduino-mk
+
+#arduino
+wget https://downloads.arduino.cc/arduino-cli/arduino-cli-latest-linux64.tar.bz2
+mv arduino-cli-latest-linux64 /usr/local/bin/arduino-cli
+rm arduino-cli-latest-linux64
+pip install esptool
+
+git clone https://github.com/igrr/mkspiffs.git
+cd mkspiffs
+git submodule update --init
+./build_all_configs.sh
+cp mkspiffs /usr/local/bin
+cd ..
+rm -rf mkspiffs
 
 is_installed code
 # visual studio code
@@ -75,7 +89,7 @@ then
     git clone https://github.com/itchyny/lightline.vim.git ~/.vim/bundle/
     git clone https://github.com/morhetz/gruvbox.git ~/.vim/bundle/
     git clone https://github.com/w0rp/ale.git ~/.vim/bundle/
-    git clone https://github.com/stevearc/vim-arduino.git ~/.vim/bundle/
+    #git clone https://github.com/stevearc/vim-arduino.git ~/.vim/bundle/
     git clone https://github.com/Townk/vim-autoclose.git ~/.vim/bundle/
 fi
 
