@@ -3,7 +3,7 @@ is_installed() {
 }
 
 #installs
-apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git
+apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer
 
 is_installed code
 # visual studio code
@@ -39,8 +39,9 @@ then
     wget https://raw.githubusercontent.com/msudgh/terminator-search/master/terminator_search.py
     mv terminator_search.py ~/.config/terminator/plugins
     cp config ~/.config/terminator/
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-    echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+    mkdir -p ~/.zsh
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh
+    echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 fi
 
 #android-studio
@@ -92,6 +93,16 @@ then
 else
     echo "\e[31m[-]\e[0m Failed to install blih"
 fi
+
+#grub-theme
+mkdir -p /boot/grub/themes
+wget https://bitbucket.org/gemlion/aurora-penguinis/raw/master/Aurora-Penguinis-GRUB2.tar.gz
+tar -xzvf Aurora-Penguinis-GRUB2.tar.gz
+mv Aurora-Penguinis-GRUB2 /boot/grub/themes
+rm Aurora-Penguinis-GRUB2.tar.gz
+sed -i '/GRUB_THEME/d' /etc/default/grub
+echo "GRUB_THEME=\"/boot/grub/themes/Aurora-Penguinis-GRUB2/theme.txt\"" >> /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
 
 #git
 if [ ! -f ~/.ssh/id_rsa.pub ]
