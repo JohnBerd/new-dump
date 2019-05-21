@@ -3,7 +3,7 @@ is_installed() {
 }
 
 #installs
-apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer
+apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice
 
 is_installed code
 # visual studio code
