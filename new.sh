@@ -2,6 +2,30 @@ is_installed() {
     inst="`which $1`"
 }
 
+check_updates() {
+    apt-get update
+    nb_update=`apt-get upgrade -s | grep -P '^\d+ upgraded' | cut -d " " -f1`
+    if [ "$nb_update" != "0" ]
+    then
+        apt-get upgrade
+        apt-get -y dist-upgrade
+        echo -e "Computer will reboot in 10 seconds, please rerun the script"
+        sleep 10
+        reboot
+    fi  
+}
+
+check_root() {
+    if [ "$EUID" -ne 0 ]
+    then
+        echo "Please run as root"
+        exit
+    fi
+}
+
+check_root
+check_updates
+
 #nvidia
 if [ "`lspci | grep NVIDIA`" != "" ]
 then
