@@ -24,6 +24,16 @@ check_root() {
     fi
 }
 
+conclusion() {
+    is_installed $1
+    if [ $inst != "" ]
+    then
+        echo "\e[32m[+]\e[0m $1 code installed"
+    else
+        echo "\e[31m[-]\e[0m Failed to install $1"
+    fi
+}
+
 check_root
 check_updates
 
@@ -37,18 +47,30 @@ fi
 apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice arduino arduino-mk
 
 #arduino
-wget https://downloads.arduino.cc/arduino-cli/arduino-cli-latest-linux64.tar.bz2
-mv arduino-cli-latest-linux64 /usr/local/bin/arduino-cli
-rm arduino-cli-latest-linux64
-pip install esptool
+is_installed arduino-cli
 
-git clone https://github.com/igrr/mkspiffs.git
-cd mkspiffs
-git submodule update --init
-./build_all_configs.sh
-cp mkspiffs /usr/local/bin
-cd ..
-rm -rf mkspiffs
+if [ $inst = "" ]
+then
+    wget https://downloads.arduino.cc/arduino-cli/arduino-cli-latest-linux64.tar.bz2
+    tar -xjvf arduino-cli-latest-linux64.tar.bz2
+    mv arduino-cli-latest-linux64 /usr/local/bin/arduino-cli
+    rm arduino-cli-latest-linux64
+    pip install esptool
+fi
+conclusion arduino-cli
+
+is_installed mkspiffs
+if [ $inst = "" ]
+then
+    git clone https://github.com/igrr/mkspiffs.git
+    cd mkspiffs
+    git submodule update --init
+    ./build_all_configs.sh
+    cp mkspiffs /usr/local/bin
+    cd ..
+    rm -rf mkspiffs
+fi
+conclusion mkspiffs
 
 is_installed code
 # visual studio code
@@ -64,14 +86,7 @@ then
     sudo apt-get update
     apt-install code
 fi
-is_installed code
-if [ $inst != "" ]
-then
-    echo "\e[32m[+]\e[0m Visual studio code installed"
-else
-    echo "\e[31m[-]\e[0m Failed to install visual studio code"
-fi
-
+conclusion code
 
 #shell
 if [ "`cat ~/.zshrc | grep agnoster`" = "" ]
@@ -100,13 +115,7 @@ then
     mv android-studio /usr/local/bin
     ln -s /usr/local/bin/android-studio/bin/studio.sh /usr/local/bin/studio
 fi
-is_installed studio
-if [ $inst != "" ]
-then
-    echo "\e[32m[+]\e[0m Android Studio installed"
-else
-    echo "\e[31m[-]\e[0m Failed to install Android Studio"
-fi
+conclusion studio
 
 #vim
 if [ ! -d ~/.vim/bundle ]
@@ -125,13 +134,7 @@ then
     echo "\e[33m[.]\e[31m Installing blih"
     cp programs/blih /usr/local/bin
 fi
-is_installed blih
-if [ "$inst" != "" ]
-then
-    echo "\e[32m[+]\e[0m Blih installed"
-else
-    echo "\e[31m[-]\e[0m Failed to install blih"
-fi
+conclusion blih
 
 #grub-theme
 mkdir -p /boot/grub/themes
