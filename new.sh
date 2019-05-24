@@ -2,6 +2,12 @@ is_installed() {
     inst="`which $1`"
 }
 
+#nvidia
+if [ "`lspci | grep NVIDIA`" != "" ]
+then
+    apt install -y ocl-icd-libopencl1 nvidia-driver nvidia-cuda-toolkit
+fi
+
 #installs
 apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice arduino arduino-mk
 
@@ -78,19 +84,13 @@ else
 fi
 
 #vim
-if [ ! -d ~/.vim ]
+if [ ! -d ~/.vim/bundle ]
 then
     echo -e "\e[33m[.]\e[0m Installing vim config"
+    git submodule init
     cp .vimrc ~
-    mkdir -p ~/.vim/autoload
-    mkdir -p ~/.vim/bundle
-    mkdir -p ~/.vim/plugin
-    git clone https://github.com/mattn/emmet-vim.git ~/.vim/bundle/
-    git clone https://github.com/itchyny/lightline.vim.git ~/.vim/bundle/
-    git clone https://github.com/morhetz/gruvbox.git ~/.vim/bundle/
-    git clone https://github.com/w0rp/ale.git ~/.vim/bundle/
-    #git clone https://github.com/stevearc/vim-arduino.git ~/.vim/bundle/
-    git clone https://github.com/Townk/vim-autoclose.git ~/.vim/bundle/
+    cp -r .vim ~
+    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
 
 #blih
