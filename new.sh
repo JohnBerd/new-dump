@@ -44,7 +44,7 @@ then
 fi
 
 #installs
-apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice arduino arduino-mk
+apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice arduino arduino-mk alacate grub-customizer freecad
 
 #arduino
 is_installed arduino-cli

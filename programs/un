@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]
+then
+    echo "Illegal number of parameters"
+fi
+
+extension=`echo "${1#*.}"`
+while [ "$extension" != "" ]
+do
+    extension=`echo "${extension#*.}"`
+    if [ "$extension" == "tar.bz" ]
+    then
+        tar -xzvf $1
+        break
+    elif [ "$extension" == "tar.bz2" ]
+    then
+        tar -xjvf $1
+        break
+    elif [ "$extension" == "tar.xz" ]
+    then
+        tar -xJvf $1
+        break
+    elif [ "$extension" == "zip" ]
+    then
+        unzip $1
+        break
+    elif [ "$extension" == "rar" ]
+    then
+        unrar $1
+        break
+    elif [ "`echo $extension | grep "\."`" == "" ]
+    then
+        echo "failed to extract the archive"
+        exit 1
+    fi
+done
