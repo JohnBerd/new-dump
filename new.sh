@@ -137,14 +137,17 @@ fi
 conclusion blih
 
 #grub-theme
-mkdir -p /boot/grub/themes
-wget https://bitbucket.org/gemlion/aurora-penguinis/raw/master/Aurora-Penguinis-GRUB2.tar.gz
-tar -xzvf Aurora-Penguinis-GRUB2.tar.gz
-mv Aurora-Penguinis-GRUB2 /boot/grub/themes
-rm Aurora-Penguinis-GRUB2.tar.gz
-sed -i '/GRUB_THEME/d' /etc/default/grub
-echo "GRUB_THEME=\"/boot/grub/themes/Aurora-Penguinis-GRUB2/theme.txt\"" >> /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
+if [ "`ls /boot/grub/themes`" = "0" ]
+then
+    mkdir -p /boot/grub/themes
+    wget https://bitbucket.org/gemlion/aurora-penguinis/raw/master/Aurora-Penguinis-GRUB2.tar.gz
+    tar -xzvf Aurora-Penguinis-GRUB2.tar.gz
+    mv Aurora-Penguinis-GRUB2 /boot/grub/themes
+    rm Aurora-Penguinis-GRUB2.tar.gz
+    sed -i '/GRUB_THEME/d' /etc/default/grub
+    echo "GRUB_THEME=\"/boot/grub/themes/Aurora-Penguinis-GRUB2/theme.txt\"" >> /etc/default/grub
+    grub-mkconfig -o /boot/grub/grub.cfg
+fi
 
 #git
 if [ ! -f ~/.ssh/id_rsa.pub ]
