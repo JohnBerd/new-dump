@@ -9,7 +9,8 @@ check_updates() {
     then
         apt-get upgrade
         apt-get -y dist-upgrade
-        echo -e "Computer will reboot in 10 seconds, please rerun the script"
+        echo ""
+        echo "\e[33mComputer will reboot in 10 seconds, please rerun the script\e[0m"
         sleep 10
         reboot
     fi  
