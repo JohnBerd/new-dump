@@ -44,10 +44,10 @@ then
 fi
 
 #installs
-apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice arduino arduino-mk alacate grub-customizer freecad
+apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice alacate grub-customizer freecad
 
 #arduino
-is_installed arduino-cli
+is_installed arduino
 
 if [ $inst = "" ]
 then
@@ -56,8 +56,17 @@ then
     mv arduino-cli-latest-linux64 /usr/local/bin/arduino-cli
     rm arduino-cli-latest-linux64
     pip install esptool
+    wget https://downloads.arduino.cc/arduino-1.8.9-linux64.tar.xz
+    tar xvJf arduino-1.8.9-linux64.tar.xz
+    mv arduino-1.8.9/ /usr/local/bin/
+    rm -rf arduino-1.8.9-linux64.tar.xz
+    cd /usr/local/bin/arduino-1.8.9/
+    ./arduino-linux-setup.sh $USER
+    ./install.sh
+    ln -s /usr/local/bin/arduino-1.8.9/arduino /usr/local/bin
+    arduino-cli core install arduino:avr
 fi
-conclusion arduino-cli
+conclusion arduino
 
 is_installed mkspiffs
 if [ $inst = "" ]
