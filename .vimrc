@@ -1,11 +1,13 @@
 execute pathogen#infect()
 set background=dark
 colorscheme gruvbox
-
 syntax enable
 set mouse=a
 set nu
 set nohlsearch
+set nobackup
+set nowritebackup
+set noswapfile
 
 set ttimeoutlen=50
 let g:airline_theme = 'powerlineish'
@@ -28,11 +30,14 @@ filetype on
 filetype plugin on
 filetype indent on
 
-autocmd bufnewfile *.c so ~/.vim/headers/epitech_header
-autocmd bufnewfile *.cpp so ~/.vim/headers/epitech_header
-autocmd bufnewfile *.h so ~/.vim/headers/epitech_header
-autocmd bufnewfile *.hpp so ~/.vim/headers/epitech_header
-autocmd bufnewfile Makefile so ~/.vim/headers/epitech_header_make
+autocmd bufnewfile *.c so ~/.vim/epitech_header
+autocmd bufnewfile *.cpp so ~/.vim/epitech_header
+autocmd bufnewfile *.h so ~/.vim/epitech_header
+autocmd bufnewfile *.hpp so ~/.vim/epitech_header
+autocmd bufnewfile Makefile so ~/.vim/epitech_header_make
+
+autocmd VimLeave *.c :normal 7gg=G
+autocmd VimLeave *.h :normal 7gg=G
 
 autocmd FileType c,cpp :iabbrev main int main(int ac, char **av)<right><CR>{<CR><TAB>return (0)<CR>}<up><up>
 

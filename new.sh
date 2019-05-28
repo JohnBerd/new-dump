@@ -130,10 +130,12 @@ conclusion studio
 if [ ! -d ~/.vim/bundle ]
 then
     echo -e "\e[33m[.]\e[0m Installing vim config"
-    git submodule init
+    git submodule update --init --recursive
     cp .vimrc ~
     cp -r .vim ~
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    cd ~/.vim/bundle/YouCompleteMe
+    python3 install.py --clang-completer
 fi
 
 #blih
