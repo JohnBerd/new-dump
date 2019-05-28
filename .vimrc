@@ -9,6 +9,26 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+let g:ycm_key_list_select_completion = ['<Down>']
+
+"NERDTree
+"autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+map <C-Right> :tabn<CR>
+map <C-Left> :tabp<CR>
+imap <C-Right> <esc>:tabn<CR>
+imap <C-Left> <esc>:tabp<CR>
+
 set ttimeoutlen=50
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#hunks#enabled=0
@@ -35,9 +55,6 @@ autocmd bufnewfile *.cpp so ~/.vim/epitech_header
 autocmd bufnewfile *.h so ~/.vim/epitech_header
 autocmd bufnewfile *.hpp so ~/.vim/epitech_header
 autocmd bufnewfile Makefile so ~/.vim/epitech_header_make
-
-autocmd VimLeave *.c :normal 7gg=G
-autocmd VimLeave *.h :normal 7gg=G
 
 autocmd FileType c,cpp :iabbrev main int main(int ac, char **av)<right><CR>{<CR><TAB>return (0)<CR>}<up><up>
 

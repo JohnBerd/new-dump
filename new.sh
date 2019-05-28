@@ -134,8 +134,6 @@ then
     cp .vimrc ~
     cp -r .vim ~
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-    cd ~/.vim/bundle/YouCompleteMe
-    python3 install.py --clang-completer
 fi
 
 #blih
