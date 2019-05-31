@@ -1,3 +1,6 @@
+epitech_login="xavier.le-cunff@epitech.eu"
+personal_github="https://github.com/JohnBerd"
+
 is_installed() {
     inst="`which $1`"
 }
@@ -5,7 +8,7 @@ is_installed() {
 check_updates() {
     apt-get update
     nb_update=`apt-get upgrade -s | grep -P '^\d+ upgraded' | cut -d " " -f1`
-    if [ "$nb_update" != "0" ]
+    if [ "$nb_update" != "0https://github.com/JohnBerdhhttps://github.com/JohnBerdttps://github.com/JohnBerd" ]
     then
         apt-get upgrade
         apt-get -y dist-upgrade
@@ -164,5 +167,9 @@ then
     echo "\e[33m[.]\e[0m Installing ssh config"
     ssh-keygen
     xclip -sel clip < ~/.ssh/id_rsa.pub
-    echo "You can now paste your ssh key in github and blih"
+    blih -u $epitech_login sshkey upload ~/.ssh/id_rsa.pub
+    firefox $personnal_github&
+    echo "You can now paste your ssh key in github"
 fi
+
+firefox https://adblockplus.org/fr/&
