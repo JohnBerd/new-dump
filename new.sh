@@ -148,17 +148,38 @@ then
 fi
 conclusion blih
 
-#grub-theme
+#theme
 if [ "`ls /boot/grub/themes`" = "0" ]
 then
     mkdir -p /boot/grub/themes
     wget https://bitbucket.org/gemlion/aurora-penguinis/raw/master/Aurora-Penguinis-GRUB2.tar.gz
     tar -xzvf Aurora-Penguinis-GRUB2.tar.gz
+    cp assets/background.png Aurora-Penguinis-GRUB2/
     mv Aurora-Penguinis-GRUB2 /boot/grub/themes
     rm Aurora-Penguinis-GRUB2.tar.gz
     sed -i '/GRUB_THEME/d' /etc/default/grub
     echo "GRUB_THEME=\"/boot/grub/themes/Aurora-Penguinis-GRUB2/theme.txt\"" >> /etc/default/grub
     grub-mkconfig -o /boot/grub/grub.cfg
+
+    apt install libglib2.0-dev-bin imagemagick plymouth plymouth-themes plank
+    git clone https://github.com/daniruiz/Flat-Remix
+    git clone https://github.com/daniruiz/Flat-Remix-GNOME-theme
+    mkdir -p ~/.icons ~/.themes
+    mv Flat-Remix/Flat-Remix* ~/.icons
+    mv Flat-Remix-GNOME-theme/Flat-Remix* ~/.themes
+    rm -rf Flat-Remix Flat-Remix-GNOME-theme
+    gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Miami-fullPanel"
+    gsettings set org.gnome.desktop.interface icon-theme "Flat-Remix-Blue"
+    gsettings set org.gnome.desktop.background picture-uri "file://$(pwd)/assets/background.jpg"
+    
+    cp -r boot-theme/slash /usr/share/plymouth/themes
+    plymouth-set-default-theme -R slash
+    sed -i '/GRUB_CMDLINE_LINUX_DEFAULT/d' /etc/default/grub
+    echo "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"" >> /etc/default/grub
+    update-grub2
+
+    mkdir -p ~/.config/autostart/
+    cp plank.destop ~/.config/autostart/
 fi
 
 #git
