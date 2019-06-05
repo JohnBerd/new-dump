@@ -172,6 +172,8 @@ then
     gsettings set org.gnome.desktop.interface icon-theme "Flat-Remix-Blue"
     gsettings set org.gnome.desktop.background picture-uri "file://$(pwd)/assets/background.jpg"
     
+    cp assets/login-background.svg /usr/share/images/desktop-base/
+    cp assets/desktop-grub.png /usr/share/images/desktop-base/
     cp -r boot-theme/slash /usr/share/plymouth/themes
     plymouth-set-default-theme -R slash
     sed -i '/GRUB_CMDLINE_LINUX_DEFAULT/d' /etc/default/grub
