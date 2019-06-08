@@ -8,7 +8,7 @@ is_installed() {
 check_updates() {
     apt-get update
     nb_update=`apt-get upgrade -s | grep -P '^\d+ upgraded' | cut -d " " -f1`
-    if [ "$nb_update" != "0https://github.com/JohnBerdhhttps://github.com/JohnBerdttps://github.com/JohnBerd" ]
+    if [ $nb_update -ge 10 ]
     then
         apt-get upgrade
         apt-get -y dist-upgrade
@@ -31,7 +31,7 @@ conclusion() {
     is_installed $1
     if [ $inst != "" ]
     then
-        echo "\e[32m[+]\e[0m $1 code installed"
+        echo "\e[32m[+]\e[0m $1 is now installed"
     else
         echo "\e[31m[-]\e[0m Failed to install $1"
     fi
@@ -47,7 +47,7 @@ then
 fi
 
 #installs
-apt install vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice alacate grub-customizer freecad
+apt install -y vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice alacarte grub-customizer freecad gimp fritzing
 
 #arduino
 is_installed arduino
