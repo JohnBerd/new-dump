@@ -164,13 +164,16 @@ then
     apt install libglib2.0-dev-bin imagemagick plymouth plymouth-themes plank
     git clone https://github.com/daniruiz/Flat-Remix
     git clone https://github.com/daniruiz/Flat-Remix-GNOME-theme
+    git clone https://github.com/vinceliuice/vimix-gtk-themes.git
+    vimix-gtk-themes/Install
     mkdir -p ~/.icons ~/.themes
     mv Flat-Remix/Flat-Remix* ~/.icons
     mv Flat-Remix-GNOME-theme/Flat-Remix* ~/.themes
-    rm -rf Flat-Remix Flat-Remix-GNOME-theme
+    rm -rf Flat-Remix Flat-Remix-GNOME-theme vimix-gtk-themes
     gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Miami-fullPanel"
     gsettings set org.gnome.desktop.interface icon-theme "Flat-Remix-Blue"
     gsettings set org.gnome.desktop.background picture-uri "file://$(pwd)/assets/background.jpg"
+    gsettings set org.gnome.desktop.interface gtk-theme "vimix-doder"
     
     cp assets/login-background.svg /usr/share/images/desktop-base/
     cp assets/desktop-grub.png /usr/share/images/desktop-base/
