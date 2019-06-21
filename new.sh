@@ -210,6 +210,9 @@ then
     apt purge gnome-shell-extension-dashtodock
     mkdir -p ~/.config/autostart/
     cp plank.desktop ~/.config/autostart/
+    cp plank.destop ~/.config/autostart/
+    rm -rf ~/.config/plank/dock1
+    mv dock1 ~/.config/plank/
 fi
 
 #git
