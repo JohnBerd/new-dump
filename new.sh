@@ -207,6 +207,7 @@ then
     echo -e "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"" >> /etc/default/grub
     update-grub2
 
+    apt purge gnome-shell-extension-dashtodock
     mkdir -p ~/.config/autostart/
     cp plank.desktop ~/.config/autostart/
 fi
