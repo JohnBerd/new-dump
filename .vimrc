@@ -1,5 +1,6 @@
 execute pathogen#infect()
 set background=dark
+set termguicolors
 colorscheme gruvbox
 syntax enable
 set mouse=a
@@ -9,17 +10,14 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-let g:ycm_key_list_select_completion = ['<Down>']
-
 "NERDTree
 "autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeTabsToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -41,8 +39,8 @@ endif
 let g:airline_symbols.space = "\ua0"
 
 autocmd FileType * set expandtab | set tabstop=4 | set shiftwidth=4 |set softtabstop=4
-autocmd FileType cpp set noexpandtab | set tabstop=2 | set shiftwidth=2 |set softtabstop=2
-autocmd FileType hpp set noexpandtab | set tabstop=2 | set shiftwidth=2 |set softtabstop=2
+autocmd FileType cpp set expandtab | set tabstop=2 | set shiftwidth=2 |set softtabstop=2
+autocmd FileType hpp set expandtab | set tabstop=2 | set shiftwidth=2 |set softtabstop=2
 
 autocmd FileType c,h highlight OverLength ctermbg=red ctermfg=white guibg=#592929 match OverLength /\%81v.\+/
 

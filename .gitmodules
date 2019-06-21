@@ -37,3 +37,12 @@
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/bundle/colorizer"]
+	path = .vim/bundle/colorizer
+	url = https://github.com/vim-scripts/colorizer.git
+[submodule ".vim/bundle/delimitMate"]
+	path = .vim/bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule ".vim/nerdcommenter"]
+	path = .vim/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git

@@ -1,0 +1,9 @@
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
+function ggg() {
+    git clone `xclip -o -selection clipboard`
+}
+
+function cd {
+    builtin cd "$@" && ls -F
+}

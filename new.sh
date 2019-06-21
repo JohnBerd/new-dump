@@ -47,7 +47,7 @@ then
 fi
 
 #installs
-apt install -y vim zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice alacarte grub-customizer freecad gimp fritzing
+apt install -y vim cmake build-essential zsh fonts-powerline terminator chrome-gnome-shell xclip blender git grub-customizer libreoffice alacarte grub-customizer freecad gimp fritzing
 
 #arduino
 is_installed arduino
@@ -84,6 +84,25 @@ then
 fi
 conclusion mkspiffs
 
+is_installed google-chrome
+if [ $inst = "" ]
+then
+    wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+    sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+    sudo apt-get update
+    apt-get install atom
+fi
+conclusion google-chrome
+
+is_installed atom
+if [ $inst = "" ]
+then
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    apt install ./google-chrome-stable_current_amd64.deb
+    rm google-chrome-stable_current_amd64.deb
+fi
+conclusion atom
+
 is_installed code
 # visual studio code
 if [ $inst = "" ]
@@ -114,6 +133,7 @@ then
     mkdir -p ~/.zsh
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh
     echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+    cat .zshbonus >> ~/.zshrc
 fi
 
 #android-studio
