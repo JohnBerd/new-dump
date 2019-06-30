@@ -11,7 +11,6 @@ set nowritebackup
 set noswapfile
 
 "NERDTree
-"autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd StdinReadPre * let s:std_in=1
@@ -42,7 +41,7 @@ autocmd FileType * set expandtab | set tabstop=4 | set shiftwidth=4 |set softtab
 autocmd FileType cpp set expandtab | set tabstop=2 | set shiftwidth=2 |set softtabstop=2
 autocmd FileType hpp set expandtab | set tabstop=2 | set shiftwidth=2 |set softtabstop=2
 
-autocmd FileType c,h highlight OverLength ctermbg=red ctermfg=white guibg=#592929 match OverLength /\%81v.\+/
+"autocmd FileType c,h highlight OverLength ctermbg=red ctermfg=white guibg=#592929 match OverLength /\%81v.\+/
 
 filetype on
 filetype plugin on
@@ -60,3 +59,12 @@ set undodir=~/.vim/undodir
 set undofile
 
 set laststatus=2
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+
+autocmd FileType ino map <C-v> :ArduinoVerify<CR>
+
+tnoremap <Esc> <C-\><C-n>:q!<CR>
+map <C-t> :terminal<CR>
+set splitbelow
+nnoremap <expr> <Enter> &ma?"\<CR>":":q!\<CR>"
