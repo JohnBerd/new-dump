@@ -4,6 +4,7 @@ nnoremap <buffer> <C-a> :ArduinoUploadAndSerial<CR>
 nnoremap <buffer> <C-m> :ArduinoSerial<CR>
 nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
 
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_confino.py'
 "set filetype=cpp
 autocmd VimEnter * :set filetype=cpp
 autocmd VimEnter * :set syntax=arduino

@@ -160,6 +160,8 @@ then
     cp .vimrc ~
     cp -r .vim ~
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    ./.vim/bundle/YouCompleteMe/install.py --clang-completer
+    ./arduino-conf.py
 fi
 
 #blih
