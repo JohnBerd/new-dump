@@ -162,6 +162,7 @@ then
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
     ./.vim/bundle/YouCompleteMe/install.py --clang-completer
     ./arduino-conf.py
+    cp arduino-conf.py /usr/local/bin/arduino-vimconf
 fi
 
 #blih

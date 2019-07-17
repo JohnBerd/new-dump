@@ -28,6 +28,8 @@ map <C-Left> :tabp<CR>
 imap <C-Right> <esc>:tabn<CR>
 imap <C-Left> <esc>:tabp<CR>
 
+map œ :set rnu!<CR>
+
 set ttimeoutlen=50
 let g:airline_theme = 'gruvbox'
 let g:airline#extensions#hunks#enabled=0
@@ -54,6 +56,7 @@ autocmd bufnewfile *.c so ~/.vim/epitech_header
 autocmd bufnewfile *.cpp so ~/.vim/epitech_header
 autocmd bufnewfile *.h so ~/.vim/epitech_header
 autocmd bufnewfile *.hpp so ~/.vim/epitech_header
+autocmd bufnewfile *.ino so ~/.vim/arduino_template
 autocmd bufnewfile Makefile so ~/.vim/epitech_header_make
 
 autocmd FileType c,cpp :iabbrev main int main(int ac, char **av)<right><CR>{<CR><TAB>return (0);<CR>}<up><up>
@@ -68,6 +71,7 @@ tnoremap <Esc> <C-\><C-n>:q!<CR>
 map <C-t> :vert terminal<CR>
 nnoremap <expr> <Enter> &ma?"\<CR>":":q!\<CR>"
 
+let delimitMate_expand_cr = 1
 
 " YouCompleteMe settings
 " youcompleteme
@@ -81,5 +85,7 @@ let g:ycm_complete_in_strings = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_max_num_candidates = 10
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 set omnifunc=syntaxcomplete#Complete
