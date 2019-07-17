@@ -1,5 +1,6 @@
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
+alias gitok="git add --all; git commit -m \"ok\"; git push"
 function ggg() {
     git clone `xclip -o -selection clipboard`
 }
